@@ -246,43 +246,75 @@ bool ATRI::TakeOut(unsigned int a, unsigned int b)
 bool ATRI::PutIn(unsigned int a, unsigned int b)
 {
     bool res = Plug::PutIn(a, b);
+    
     cout << "PutIn:" << res << endl;
     return res;
 }
 bool ATRI::Close(unsigned int a)
 {
     bool res = Plug::Close(a);
+        if(res)
+    {
+        if(isOpen = true)
+        {
+            isOpen = false;
+        }
+    }
     cout << "Close:" << res << endl;
     return res;
 }
 bool ATRI::Open(unsigned int a)
 {
     bool res = Plug::Open(a);
+    if(res)
+    {
+        if(isOpen = false)
+        {
+            isOpen = true;
+        }
+    }
     cout << "Open:" << res << endl;
     return res;
 }
 bool ATRI::FromPlate(unsigned int a)
 {
     bool res = Plug::FromPlate(a);
+    if(res)
+    {
+        hold_id = a;
+        plate_id = UNKNOWN;
+    }
     cout << "FromPlate:" << res << endl;
     return res;
 }
 bool ATRI::ToPlate(unsigned int a)
 {
     bool res = Plug::ToPlate(a);
+    if(res)
+    {
+        hold_id = UNKNOWN;
+        plate_id = a;
+    }
     cout << "ToPlate:" << res << endl;
     return res;
 }
 bool ATRI::PutDown(unsigned int a)
 {
     bool res = Plug::PutDown(a);
+    if(res)
+    {
+        hold_id = UNKNOWN;
+    }
     cout << "PutDown:" << res << endl;
     return res;
 }
 bool ATRI::PickUp(unsigned int a)
 {
     bool res = Plug::PickUp(a);
-
+    if(res)
+    {
+        hold_id = a;
+    }
     cout << "PickUp:" << res << endl;
     return res;
 }
